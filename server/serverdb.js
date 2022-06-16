@@ -43,6 +43,18 @@ app.post("/delete/:EV_ID",(req,res)=>{
         console.log(err);
     })
 })
+app.post("/update",(req,res)=>{
+    // const EV_ID = req.body.EV_ID;
+    // const EV_NAME = req.body.EV_NAME;
+    // const EV_PLACE = req.body.EV_PLACE;
+    const{EV_PLACE,EV_NAME}=req.body
+    console.log(EV_PLACE);
+    console.log(EV_NAME);
+    const update="update evstat_india set EV_PLACE = ? where EV_NAME = ?";
+    db.query(update,[EV_PLACE,EV_NAME],(err,data)=>{
+        console.log(err);
+    })
+})
 app.get("/rep", (req, res) => {
     console.log("Please Wait! we are fetching your data...");
     db.query("select * from evstat_india", (err, data) => {
